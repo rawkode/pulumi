@@ -421,6 +421,9 @@ func addGitCommitMetadata(repo *git.Repository, repoRoot string, m *backend.Upda
 	if m.Message == "" {
 		m.Message = gitCommitTitle(msg)
 	}
+	glog.Errorf(
+		"\n\n*** UPDATE MESSAGE INFO ***\n\nm.Message = %q\nmsg = %q\ncommit.Message = %q\nciVars.CommitMessage = %q\n\n",
+		m.Message, commit.Message, ciVars.CommitMessage)
 
 	// Store committer and author information.
 	m.Environment[backend.GitCommitter] = commit.Committer.Name
